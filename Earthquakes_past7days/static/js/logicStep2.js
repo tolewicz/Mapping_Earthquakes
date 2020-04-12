@@ -69,27 +69,70 @@ function dateConversion(binaryDate){
   return convertedDate
 }
 
+function styleInfo(feature) {
+  magnitude = feature.properties.mag
+  return {
+    opacity: 1,
+    fillOpacity: 1,
+    fillColor: "#ffae42",
+    color: "#000000",
+    radius: getRadius(magnitude),
+    stroke: true,
+    weight: 0.5,
+    
+  };
+}
+
+function getRadius(magnitude) {
+  
+  if (magnitude === 0) {
+    return 1;
+  }
+  return magnitude * 4;
+}
+
+function dateConversion(binaryDate){
+  var myDate = new Date( binaryDate *1000);
+  convertedDate = myDate.toLocaleString();
+  return convertedDate
+}
+
 d3.json(earthquakes).then(function(data){
   console.log(data)
-  L.geoJson(data, { //adding fancy deatures to the layer
-    
-  weight:1,
-  fillColor: "yellow",
-  //adding popup info
-    onEachFeature: function(features, layer) {
-      quakePlace = layer.feature.properties.place
-      console.log(layer.feature.properties["place"])
-      rawDate = layer.feature.properties.time
-      console.log(rawDate)
-      console.log(dateConversion(rawDate))
-       
-     layer.bindPopup("<h3>" + "location:" + layer.feature.properties.place +  "</h3>" + "<hr>" +
-     "<h3>" + "time: " + convertedDate+  "</h3>")
-     
-    }
+  
+  L.geoJson(data, {
 
-  }).addTo(map)
-})
+    // We turn each feature into a circleMarker on the map.
+    
+    pointToLayer: function(feature, latlng) {
+              console.log(data);
+              var rawDate = feature.properties.time;
+              var quakePlace = feature.properties.place;
+
+              console.log(dateConversion(rawDate));
+              console.log(quakePlace);
+
+              return L.circleMarker(latlng).bindPopup("<h3>" + "location:" + quakePlace +  "</h3>" + "<hr>" + "<h3>" + "time: " + convertedDate+  "</h3>");
+            },
+          // We set the style for each circleMarker using our styleInfo function.
+        style: styleInfo
+        })
+        .addTo(map);
+    });
+
+      // weight:1,
+  // fillColor: "yellow",
+    
+      //   quakePlace = layer.feature.properties.place
+    //   console.log(layer.feature.properties["place"])
+    //   rawDate = layer.feature.properties.time
+    //   console.log(rawDate)
+    //   console.log(dateConversion(rawDate))
+       
+    //  layer.bindPopup("<h3>" + "location:" + layer.feature.properties.place +  "</h3>" + "<hr>" +
+    //  "<h3>" + "time: " + convertedDate+  "</h3>")
+     
+
 
 // Pass our map layers into our layers control and add the layers control to the map.
 L.control.layers(baseMaps).addTo(map);
