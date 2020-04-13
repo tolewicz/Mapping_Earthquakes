@@ -68,7 +68,7 @@ let overlays = {
 //importing data from Json address and adding it as a layer to the map
 
 function dateConversion(binaryDate){
-  var myDate = new Date( binaryDate *1000);
+  var myDate = new Date( binaryDate);
   convertedDate = myDate.toLocaleString();
   return convertedDate
 }
