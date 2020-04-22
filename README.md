@@ -1,9 +1,6 @@
 # Mapping_Earthquakes
 Interactive map
 
-# Bacteria Distribution
-Interactive maps with GeoJSON in JavaScript
-
 ## Project Overview
 Created interactive maps showing: city information, flight routes, districts and  earthquakes with tectonic maps. The maps have options of changing layers between street, satellite, dark and light view. The final two maps can put layers of earthquakes and tectonic plates. Each point of map when clicked shows a short information. In case of earthquakes it is the location, time and magnitude.
 For various maps the source data are geoJSON files that are either downloaded or called from API through d3. Module.
