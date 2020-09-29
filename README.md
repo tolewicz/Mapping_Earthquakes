@@ -8,9 +8,12 @@ For various maps the source data are geoJSON files that are either downloaded or
 ## Module challenge
 Created interactive map that has 4 different types of views: street, satellite, dark and light view, and possibility to set the layers of earthquakes and tectonic plates. Each earthquake is represented by a circle that when clicked shows the information data.
 
+ 
 <p align="center">
 <img src="https://github.com/tolewicz/Mapping_Earthquakes_GEOJson/blob/master/Earthquake_Challenge/webmap.jpg" width="800" height= "400">
 </p>
+
+web address: https://tolewicz.github.io/Mapping_Earthquakes_GEOJson/
 
 ## Resources
 
